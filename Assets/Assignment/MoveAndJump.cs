@@ -19,22 +19,22 @@ public class MoveAndJump : MonoBehaviour {
         input.x = Input.GetAxis("Horizontal");
         transform.Translate(input * speed.x * Time.deltaTime);
 
-        if (Input.GetKeyDown (KeyCode.Space))
+        if (isJumped && transform.position.y <= 1)
+        {
+            isJumped = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!isJumped)
-            { 
+            {
                 transform.Translate(new Vector3(0, 10f, 0) * speed.y * Time.deltaTime);
-                
+
                 if (transform.position.y > 150)
                 {
                     isJumped = true;
                 }
             }
-        }
-
-        if (isJumped && transform.position.y <= 1)
-        {
-            isJumped = false;
         }
     }
 }
